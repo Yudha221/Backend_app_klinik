@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doctor;
 use App\Models\DoctorSchedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Doctor;
-
 
 class DoctorScheduleController extends Controller
 {
@@ -15,10 +14,8 @@ class DoctorScheduleController extends Controller
     {
         $doctorSchedules = DoctorSchedule::with('doctor')
             ->when($request->input('doctor_id'), function ($query, $doctor_id) {
-                return $query->where('doctor_id', $doctor_id);
-            })
-
-            ->orderBy('doctor_id', 'asc')
+                return $query->where('doctor_id');
+            })->orderBy('doctor_id', 'asc')
             ->paginate(10);
         return view('pages.doctor_schedules.index', compact('doctorSchedules'));
     }
@@ -35,73 +32,72 @@ class DoctorScheduleController extends Controller
     {
         $request->validate([
             'doctor_id' => 'required',
-
         ]);
 
         //if senin is not empty
-        if ($request->senin) {
+        if ($request->monday) {
             $doctorSchedule = new DoctorSchedule;
             $doctorSchedule->doctor_id = $request->doctor_id;
-            $doctorSchedule->day = 'Senin';
-            $doctorSchedule->time = $request->senin;
+            $doctorSchedule->day = 'Monday';
+            $doctorSchedule->time = $request->monday;
             $doctorSchedule->save();
         }
 
         //if selasa is not empty
-        if ($request->selasa) {
+        if ($request->tuesday) {
             $doctorSchedule = new DoctorSchedule;
             $doctorSchedule->doctor_id = $request->doctor_id;
-            $doctorSchedule->day = 'Selasa';
-            $doctorSchedule->time = $request->selasa;
+            $doctorSchedule->day = 'Tuesday';
+            $doctorSchedule->time = $request->tuesday;
             $doctorSchedule->save();
         }
 
         //if rabu is not empty
-        if ($request->rabu) {
+        if ($request->wednesday) {
             $doctorSchedule = new DoctorSchedule;
             $doctorSchedule->doctor_id = $request->doctor_id;
-            $doctorSchedule->day = 'Rabu';
-            $doctorSchedule->time = $request->rabu;
+            $doctorSchedule->day = 'Wednesday';
+            $doctorSchedule->time = $request->wednesday;
             $doctorSchedule->save();
         }
 
         //if kamis is not empty
-        if ($request->kamis) {
+        if ($request->thursday) {
             $doctorSchedule = new DoctorSchedule;
             $doctorSchedule->doctor_id = $request->doctor_id;
-            $doctorSchedule->day = 'Kamis';
-            $doctorSchedule->time = $request->kamis;
+            $doctorSchedule->day = 'Thursday';
+            $doctorSchedule->time = $request->thursday;
             $doctorSchedule->save();
         }
 
         //if jumat is not empty
-        if ($request->jumat) {
+        if ($request->friday) {
             $doctorSchedule = new DoctorSchedule;
             $doctorSchedule->doctor_id = $request->doctor_id;
-            $doctorSchedule->day = 'Jumat';
-            $doctorSchedule->time = $request->jumat;
+            $doctorSchedule->day = 'Friday';
+            $doctorSchedule->time = $request->friday;
             $doctorSchedule->save();
         }
 
         //if sabtu is not empty
-        if ($request->sabtu) {
+        if ($request->saturday) {
             $doctorSchedule = new DoctorSchedule;
             $doctorSchedule->doctor_id = $request->doctor_id;
-            $doctorSchedule->day = 'Sabtu';
-            $doctorSchedule->time = $request->sabtu;
+            $doctorSchedule->day = 'Saturday';
+            $doctorSchedule->time = $request->saturday;
             $doctorSchedule->save();
         }
 
         //if minggu is not empty
-        if ($request->minggu) {
+        if ($request->sunday) {
             $doctorSchedule = new DoctorSchedule;
             $doctorSchedule->doctor_id = $request->doctor_id;
-            $doctorSchedule->day = 'Minggu';
-            $doctorSchedule->time = $request->minggu;
+            $doctorSchedule->day = 'Sunday';
+            $doctorSchedule->time = $request->sunday;
             $doctorSchedule->save();
         }
 
-        return redirect()->route('doctor-schedules.index')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->route('doctor-schedules.index')->with('success', 'Data berhasil ditambahkan.');
     }
 
     //edit
@@ -129,7 +125,7 @@ class DoctorScheduleController extends Controller
         $doctorSchedule->note = $request->note;
         $doctorSchedule->save();
 
-        return redirect()->route('doctor-schedules.index');
+        return redirect()->route('doctor-schedules.index')->with('success', 'Data berhasil diupdate.');
     }
 
     //destroy
