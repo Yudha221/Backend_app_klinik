@@ -34,4 +34,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('patients', \App\Http\Controllers\PatientController::class);
     //Service Medicines
     Route::resource('service-medicines', App\Http\Controllers\ServiceMedicinesController::class);
+    //Dashboard
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('pages.dashboard');
 });
