@@ -5,6 +5,11 @@ use App\Http\Controllers\Api\DoctorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\PatientController;
+use App\Http\Controllers\Api\DoctorScheduleController;
+use App\Http\Controllers\Api\PatientScheduleController;
+use App\Http\Controllers\Api\SatuSehatTokenController;
+use App\Http\Controllers\Api\ServiceMedicinesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +34,18 @@ Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logo
 
 //doctors
 Route::apiResource('/api-doctors', DoctorController::class)->middleware('auth:sanctum');
+
+//patients
+Route::apiResource('/api-patients', PatientController::class)->middleware('auth:sanctum');
+
+//doctor schedules
+Route::apiResource('/api-doctor-schedules', DoctorScheduleController::class)->middleware('auth:sanctum');
+
+//service medicines
+Route::apiResource('/api-service-medicines', ServiceMedicinesController::class)->middleware('auth:sanctum');
+
+//patient schedule
+Route::apiResource('/api-patient-schedules', PatientScheduleController::class)->middleware('auth:sanctum');
+
+//token satu sehat
+Route::get('/satusehat-token', [SatuSehatTokenController::class, 'token']);

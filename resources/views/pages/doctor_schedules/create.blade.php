@@ -30,7 +30,7 @@
 
 
                 <div class="card">
-                    <form action="{{ route('doctor-schedules.update') }}" method="POST">
+                    <form action="{{ route('doctor-schedules.store') }}" method="POST">
                         @csrf
                         <div class="card-header">
                             <h4>Input Text</h4>
@@ -48,38 +48,38 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Jadwal Senin</label>
-                                <input type="text" class="form-control " name="senin">
+                                <label>Jadwal Monday</label>
+                                <input type="text" class="form-control " name="monday">
 
                             </div>
                             <div class="form-group">
-                                <label>Jadwal Selasa</label>
-                                <input type="text" class="form-control " name="selasa">
+                                <label>Jadwal Tuesday</label>
+                                <input type="text" class="form-control " name="tuesday">
 
                             </div>
                             <div class="form-group">
-                                <label>Jadwal Rabu</label>
-                                <input type="text" class="form-control " name="rabu">
+                                <label>Jadwal Wednesday</label>
+                                <input type="text" class="form-control " name="wednesday">
 
                             </div>
                             <div class="form-group">
-                                <label>Jadwal Kamis</label>
-                                <input type="text" class="form-control " name="kamis">
+                                <label>Jadwal Thursday</label>
+                                <input type="text" class="form-control " name="thursday">
 
                             </div>
                             <div class="form-group">
-                                <label>Jadwal Jumat</label>
-                                <input type="text" class="form-control " name="jumat">
+                                <label>Jadwal Friday</label>
+                                <input type="text" class="form-control " name="friday">
 
                             </div>
                             <div class="form-group">
-                                <label>Jadwal Sabtu</label>
-                                <input type="text" class="form-control " name="sabtu">
+                                <label>Jadwal Saturday</label>
+                                <input type="text" class="form-control " name="saturday">
 
                             </div>
                             <div class="form-group">
-                                <label>Jadwal Minggu</label>
-                                <input type="text" class="form-control " name="minggu">
+                                <label>Jadwal Sunday</label>
+                                <input type="text" class="form-control " name="sunday">
 
                             </div>
 

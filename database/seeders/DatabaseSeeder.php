@@ -43,6 +43,8 @@ class DatabaseSeeder extends Seeder
             DoctorSeeder::class,
             DoctorScheduleSeeder::class,
             PatientSeeder::class,
+            ServiceMedicinesSeeder::class,
+            PatientScheduleSeeder::class,
         ]);
     }
 }
